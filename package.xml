@@ -4,7 +4,7 @@
   <name>sgm_gpu</name>
   <version>0.0.0</version>
   <description>Semi-Global Matching on GPU</description>
-  <maintainer email="fujimoto@aisl.cs.tut.ac.jp">Hironori Fujimoto</maintainer>
+  <maintainer email="broadbarredfirefish@gmail.com">Hironori Fujimoto</maintainer>
   <license>GPL3</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
