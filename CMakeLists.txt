@@ -28,6 +28,11 @@ set(CUDA_NVCC_FLAGS
 )
 
 find_package(ament_cmake REQUIRED)
+find_package(image_transport REQUIRED)
+find_package(message_filters REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(stereo_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
