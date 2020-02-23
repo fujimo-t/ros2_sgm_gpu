@@ -36,7 +36,11 @@ private:
   >;
   std::shared_ptr<StereoSynchronizer> stereo_synch_;
   
-  void stereoCallback
+  // Parameters for Semi-Global Matching
+  uint8_t sgm_p1_;
+  uint8_t sgm_p2_;
+  
+  void stereo_callback
   (
     const sensor_msgs::msg::ImageConstSharedPtr& left_image,
     const sensor_msgs::msg::ImageConstSharedPtr& right_image,
