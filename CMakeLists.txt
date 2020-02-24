@@ -12,10 +12,6 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 14)
 endif()
 
-if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
-
 # FLAGS for CUDA
 set(CUDA_NVCC_FLAGS
   ${CUDA_NVCC_FLAGS};
@@ -33,6 +29,7 @@ find_package(image_geometry REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_components REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(stereo_msgs REQUIRED)
 
@@ -49,6 +46,27 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_package()
-
 include_directories(include)
+
+add_library(sgm_gpu_component SHARED
+  src/sgm_gpu_component.cu
+  src/costs.cu
+  src/debug.cu
+  src/disparity_method.cu
+  src/hamming_cost.cu
+  src/left_right_consistency.cu
+  src/median_filter.cu
+)
+ament_target_dependencies(sgm_gpu_component
+  cv_bridge
+  image_geometry
+  image_transport
+  message_filters
+  rclcpp
+  sensor_msgs
+  stereo_msgs
+  OpenCV
+)
+rclcpp_components_register_nodes(sgm_gpu_component sgm_gpu::SgmGpu)
+
+ament_package()
