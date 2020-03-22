@@ -29,7 +29,6 @@ class TestStereoPublisher(rclpy.node.Node):
 
         # Load images
         cv_bridge = CvBridge()
-        print(left_image_path)
         left_image = cv2.imread(left_image_path)
         right_image = cv2.imread(right_image_path)
         self.left_image_msg_ = cv_bridge.cv2_to_imgmsg(left_image)
