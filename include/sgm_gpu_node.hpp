@@ -1,5 +1,5 @@
-#ifndef SGM_GPU__SGM_GPU_COMPONENT_HPP_
-#define SGM_GPU__SGM_GPU_COMPONENT_HPP_
+#ifndef SGM_GPU__SGM_GPU_NODE_HPP_
+#define SGM_GPU__SGM_GPU_NODE_HPP_
 
 #include "sgm_gpu/sgm_gpu.hpp"
 
@@ -10,10 +10,11 @@
 namespace sgm_gpu
 {
 
-class SgmGpuComponent : public rclcpp::Node
+class SgmGpuNode : public rclcpp::Node
 {
 public:
-  explicit SgmGpuComponent(const rclcpp::NodeOptions& options);
+  explicit SgmGpuNode(
+    const rclcpp::NodeOptions& options = rclcpp::NodeOptions());
   
 private:
   std::shared_ptr<SgmGpu> sgm_gpu_;
@@ -45,4 +46,4 @@ private:
 
 } // namespace sgm_gpu
 
-#endif // SGM_GPU__SGM_GPU_COMPONENT_HPP_
+#endif // SGM_GPU__SGM_GPU_NODE_HPP_

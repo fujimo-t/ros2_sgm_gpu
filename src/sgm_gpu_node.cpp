@@ -1,4 +1,4 @@
-#include "sgm_gpu_component.hpp"
+#include "sgm_gpu_node.hpp"
 
 #include <image_geometry/stereo_camera_model.h>
 #include <functional>
@@ -6,14 +6,14 @@
 namespace sgm_gpu
 {
 
-SgmGpuComponent::SgmGpuComponent(const rclcpp::NodeOptions& options) 
-  : Node("sgm_gpu", options)
+SgmGpuNode::SgmGpuNode(const rclcpp::NodeOptions& options) 
+  : Node("sgm_gpu_node", options)
 {
   rclcpp::Logger parent_logger = this->get_logger();
-  sgm_gpu_.reset(new SgmGpu(parent_logger));
+  //sgm_gpu_.reset(new SgmGpu(parent_logger));
   
   disparity_pub_ 
-    = create_publisher<stereo_msgs::msg::DisparityImage>("disparity", 1);
+    = this->create_publisher<stereo_msgs::msg::DisparityImage>("~/disparity", 1);
 
   std::string img_transport_type = declare_parameter("image_transport", "raw");
   
@@ -26,10 +26,10 @@ SgmGpuComponent::SgmGpuComponent(const rclcpp::NodeOptions& options)
     left_img_sub_, right_img_sub_, left_caminfo_sub_, right_caminfo_sub_, 5));
   using namespace std::placeholders;
   stereo_synch_->registerCallback(
-    std::bind(&SgmGpuComponent::stereo_callback, this, _1, _2, _3, _4));
+    std::bind(&SgmGpuNode::stereo_callback, this, _1, _2, _3, _4));
 }
 
-void SgmGpuComponent::stereo_callback
+void SgmGpuNode::stereo_callback
 (
   const sensor_msgs::msg::Image::ConstSharedPtr& left_image,
   const sensor_msgs::msg::Image::ConstSharedPtr& right_image,
@@ -41,7 +41,7 @@ void SgmGpuComponent::stereo_callback
     return;
 
   stereo_msgs::msg::DisparityImage disparity_msg;
-  sgm_gpu_->computeDisparity(*left_image, *right_image, *left_info, *right_info, disparity_msg);
+  //sgm_gpu_->computeDisparity(*left_image, *right_image, *left_info, *right_info, disparity_msg);
 
   disparity_pub_->publish(disparity_msg);
 }
@@ -49,5 +49,5 @@ void SgmGpuComponent::stereo_callback
 } // namespace sgm_gpu
 
 #include "rclcpp_components/register_node_macro.hpp"
-RCLCPP_COMPONENTS_REGISTER_NODE(sgm_gpu::SgmGpuComponent)
+RCLCPP_COMPONENTS_REGISTER_NODE(sgm_gpu::SgmGpuNode)
 

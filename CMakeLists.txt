@@ -48,6 +48,7 @@ endif()
 
 include_directories(include)
 
+# libsgm_gpu
 add_library(${PROJECT_NAME} SHARED
   src/sgm_gpu.cu
   src/costs.cu
@@ -64,7 +65,8 @@ ament_target_dependencies(${PROJECT_NAME}
   OpenCV
 )
 
-add_library(${PROJECT_NAME}_component SHARED src/sgm_gpu_component.cpp)
+# A component: sgm_gpu::SgmGpuNode
+add_library(${PROJECT_NAME}_component SHARED src/${PROJECT_NAME}_node.cpp)
 ament_target_dependencies(${PROJECT_NAME}_component
   image_transport
   message_filters
@@ -74,10 +76,15 @@ ament_target_dependencies(${PROJECT_NAME}_component
 )
 target_link_libraries(${PROJECT_NAME}_component ${PROJECT_NAME})
 rclcpp_components_register_nodes(${PROJECT_NAME}_component 
-  "sgm_gpu::SgmGpuComponent")
+  "sgm_gpu::SgmGpuNode")
+
+# Standalone node version of sgm_gpu::SgmGpuNode
+add_executable(${PROJECT_NAME}_node src/${PROJECT_NAME}_node_main.cpp)
+target_link_libraries(${PROJECT_NAME}_node ${PROJECT_NAME}_component)
 
 install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_component 
   LIBRARY DESTINATION lib)
+install(TARGETS ${PROJECT_NAME}_node DESTINATION lib/${PROJECT_NAME})
 install(PROGRAMS script/test_stereo_publisher DESTINATION lib/${PROJECT_NAME})
 install(DIRECTORY test_data DESTINATION share/${PROJECT_NAME})
 
