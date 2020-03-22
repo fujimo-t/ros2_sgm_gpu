@@ -70,5 +70,7 @@ ament_target_dependencies(sgm_gpu_component
 rclcpp_components_register_nodes(sgm_gpu_component sgm_gpu::SgmGpu)
 
 install(TARGETS sgm_gpu_component LIBRARY DESTINATION lib)
+install(PROGRAMS script/test_stereo_publisher DESTINATION lib/${PROJECT_NAME})
+install(DIRECTORY test_data DESTINATION share/${PROJECT_NAME})
 
 ament_package()

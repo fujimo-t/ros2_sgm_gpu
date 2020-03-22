@@ -8,10 +8,8 @@
   <license>GPL3</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
-  
   <depend>cv_bridge</depend>
   <depend>image_geometry</depend>
   <depend>image_transport</depend>
@@ -21,9 +19,11 @@
   <depend>rclcpp_components</depend>
   <depend>sensor_msgs</depend>
   <depend>stereo_msgs</depend>
-  
   <build_depend>nvidia-cuda-dev</build_depend>
+  <exec_depend>ament_index_python</exec_depend>
   <exec_depend>nvidia-cuda</exec_depend>
+  <exec_depend>python-opencv</exec_depend>
+  <exec_depend>rclpy</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
