@@ -14,13 +14,13 @@ class TestStereoPublisher(rclpy.node.Node):
 
         # Publishers
         self.left_image_pub_ = self.create_publisher(
-            Image, 'left/image_raw', 1)
+            Image, '~/left/image_raw', 1)
         self.right_image_pub_ = self.create_publisher(
-            Image, 'right/image_raw', 1)
+            Image, '~/right/image_raw', 1)
         self.left_info_pub_ = self.create_publisher(
-            CameraInfo, 'left/camera_info', 1)
+            CameraInfo, '~/left/camera_info', 1)
         self.right_info_pub_ = self.create_publisher(
-            CameraInfo, 'right/camera_info', 1)
+            CameraInfo, '~/right/camera_info', 1)
 
         image_directory = os.path.join(
             get_package_share_directory('sgm_gpu'), 'test_data')
@@ -58,7 +58,6 @@ class TestStereoPublisher(rclpy.node.Node):
         self.left_info_pub_.publish(self.left_info_msg_)
         self.right_info_pub_.publish(self.right_info_msg_)
 
-
 def main(args=None):
     rclpy.init(args=args)
     stereo_publisher = TestStereoPublisher()
@@ -67,7 +66,6 @@ def main(args=None):
 
     stereo_publisher.destroy_node()
     rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()
