@@ -1,5 +1,5 @@
 /***********************************************************************
-  Copyright (C) 2019 Hironori Fujimoto
+  Copyright (C) 2020 Hironori Fujimoto
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -14,10 +14,13 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#ifndef MEDIAN_FILTER_H_
-#define MEDIAN_FILTER_H_
+#ifndef SGM_GPU__MEDIAN_FILTER_HPP_
+#define SGM_GPU__MEDIAN_FILTER_HPP_
 
 #include <stdint.h>
+
+namespace sgm_gpu
+{
 
 __global__ void MedianFilter3x3(const uint8_t* __restrict__ d_input, uint8_t* __restrict__ d_out, const uint32_t rows, const uint32_t cols);
 
@@ -52,4 +55,8 @@ __inline__ __device__ void MedianFilter(const T* __restrict__ d_input, T* __rest
     d_out[idx] = d_input[idx];
   }
 }
-#endif /* MEDIAN_FILTER_H_ */
+
+} // namespace sgm_gpu
+
+#endif // SGM_GPU__MEDIAN_FILTER_HPP_
+

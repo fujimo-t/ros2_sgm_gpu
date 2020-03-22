@@ -14,7 +14,10 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#include "hamming_cost.h"
+#include "sgm_gpu/hamming_cost.hpp"
+
+namespace sgm_gpu
+{
 
 //d_transform0, d_transform1, d_cost, rows, cols
 __global__ void
@@ -63,3 +66,6 @@ HammingDistanceCostKernel (  const cost_t *d_transform0, const cost_t *d_transfo
     __syncthreads();
   }
 }
+
+} // namespace sgm_gpu
+

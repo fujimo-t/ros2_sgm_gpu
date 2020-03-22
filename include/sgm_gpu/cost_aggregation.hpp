@@ -14,8 +14,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#ifndef COST_AGGREGATION_H_
-#define COST_AGGREGATION_H_
+#ifndef SGM_GPU__COST_AGGREGATION_HPP_
+#define SGM_GPU__COST_AGGREGATION_HPP_
 
 #define ITER_COPY			0
 #define ITER_NORMAL			1
@@ -27,6 +27,9 @@
 #define DIR_DOWNUP			1
 #define DIR_LEFTRIGHT		2
 #define DIR_RIGHTLEFT		3
+
+namespace sgm_gpu
+{
 
 template<int add_col, bool recompute, bool join_dispcomputation>
 __device__ __forceinline__ void CostAggregationGenericIndexesIncrement(int *index, int *index_im, int *col, const int add_index, const int add_imindex) {
@@ -502,4 +505,7 @@ __global__ void CostAggregationKernelUpToDown(uint8_t* d_cost, uint8_t *d_L, uin
   }
 }
 
-#endif /* COST_AGGREGATION_H_ */
+} // namespace sgm_gpu
+
+#endif // SGM_GPU__COST_AGGREGATION_HPP
+

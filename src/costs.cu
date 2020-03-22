@@ -14,8 +14,11 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#include "costs.h"
+#include "sgm_gpu/costs.hpp"
 #include <stdio.h>
+
+namespace sgm_gpu
+{
 
 __global__ void 
 __launch_bounds__(1024, 2)
@@ -107,3 +110,6 @@ CenterSymmetricCensusKernelSM2(const uint8_t *im, const uint8_t *im2, cost_t *tr
     transform2[idy*cols+idx] = census2;
   }
 }
+
+} // namespace sgm_gpu
+

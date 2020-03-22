@@ -1,5 +1,5 @@
 /***********************************************************************
-  Copyright (C) 2019 Hironori Fujimoto
+  Copyright (C) 2020 Hironori Fujimoto
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -14,13 +14,18 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#ifndef LEFT_RIGHT_CONSISTENCY_H_
-#define LEFT_RIGHT_CONSISTENCY_H_
+#ifndef SGM_GPU__LEFT_RIGHT_CONSISTENCY_HPP_
+#define SGM_GPU__LEFT_RIGHT_CONSISTENCY_HPP_
 
 #include <stdint.h>
 
-__global__ void ChooseRightDisparity(uint8_t *right_disparity, const uint16_t *smoothed_cost, const uint32_t rows, const uint32_t cols);
-__global__ void LeftRightConsistenchCheck(uint8_t *disparity, const uint8_t *disparity_right, const uint32_t rows, const uint32_t cols);
+namespace sgm_gpu
+{
 
-#endif /* LEFT_RIGHT_CONSISTENCY_H_ */
+__global__ void ChooseRightDisparity(uint8_t *right_disparity, const uint16_t *smoothed_cost, const uint32_t rows, const uint32_t cols);
+__global__ void LeftRightConsistencyCheck(uint8_t *disparity, const uint8_t *disparity_right, const uint32_t rows, const uint32_t cols);
+
+}
+
+#endif // SGM_GPU__LEFT_RIGHT_CONSISTENCY_HPP_
 

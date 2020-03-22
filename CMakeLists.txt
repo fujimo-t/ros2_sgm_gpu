@@ -48,28 +48,36 @@ endif()
 
 include_directories(include)
 
-add_library(sgm_gpu_component SHARED
-  src/sgm_gpu_component.cu
+add_library(${PROJECT_NAME} SHARED
+  src/sgm_gpu.cu
   src/costs.cu
-  src/debug.cu
-  src/disparity_method.cu
   src/hamming_cost.cu
   src/left_right_consistency.cu
   src/median_filter.cu
 )
-ament_target_dependencies(sgm_gpu_component
+ament_target_dependencies(${PROJECT_NAME}
   cv_bridge
   image_geometry
-  image_transport
-  message_filters
   rclcpp
   sensor_msgs
   stereo_msgs
   OpenCV
 )
-rclcpp_components_register_nodes(sgm_gpu_component sgm_gpu::SgmGpu)
 
-install(TARGETS sgm_gpu_component LIBRARY DESTINATION lib)
+add_library(${PROJECT_NAME}_component SHARED src/sgm_gpu_component.cpp)
+ament_target_dependencies(${PROJECT_NAME}_component
+  image_transport
+  message_filters
+  rclcpp
+  sensor_msgs
+  stereo_msgs
+)
+target_link_libraries(${PROJECT_NAME}_component ${PROJECT_NAME})
+rclcpp_components_register_nodes(${PROJECT_NAME}_component 
+  "sgm_gpu::SgmGpuComponent")
+
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_component 
+  LIBRARY DESTINATION lib)
 install(PROGRAMS script/test_stereo_publisher DESTINATION lib/${PROJECT_NAME})
 install(DIRECTORY test_data DESTINATION share/${PROJECT_NAME})
 

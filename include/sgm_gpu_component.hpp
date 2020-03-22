@@ -1,25 +1,23 @@
 #ifndef SGM_GPU__SGM_GPU_COMPONENT_HPP_
 #define SGM_GPU__SGM_GPU_COMPONENT_HPP_
 
-#include <memory>
+#include "sgm_gpu/sgm_gpu.hpp"
 
-#include "image_transport/subscriber_filter.h"
-#include "message_filters/subscriber.h"
-#include "message_filters/time_synchronizer.h"
-#include "rclcpp/rclcpp.hpp"
-#include "sensor_msgs/msg/camera_info.hpp"
-#include "sensor_msgs/msg/image.hpp"
-#include "stereo_msgs/msg/disparity_image.hpp"
+#include <image_transport/subscriber_filter.h>
+#include <message_filters/subscriber.h>
+#include <message_filters/time_synchronizer.h>
 
 namespace sgm_gpu
 {
 
-class SgmGpu : public rclcpp::Node
+class SgmGpuComponent : public rclcpp::Node
 {
 public:
-  explicit SgmGpu(const rclcpp::NodeOptions& options);
+  explicit SgmGpuComponent(const rclcpp::NodeOptions& options);
   
 private:
+  std::shared_ptr<SgmGpu> sgm_gpu_;
+  
   rclcpp::Publisher<stereo_msgs::msg::DisparityImage>::SharedPtr disparity_pub_;
   
   image_transport::SubscriberFilter left_img_sub_;
@@ -35,12 +33,6 @@ private:
     sensor_msgs::msg::CameraInfo
   >;
   std::shared_ptr<StereoSynchronizer> stereo_synch_;
-  
-  // Parameters for Semi-Global Matching
-  uint8_t sgm_p1_;
-  uint8_t sgm_p2_;
-  
-  bool check_consistency_;
   
   void stereo_callback
   (
