@@ -86,6 +86,6 @@ install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_component
   LIBRARY DESTINATION lib)
 install(TARGETS ${PROJECT_NAME}_node DESTINATION lib/${PROJECT_NAME})
 install(PROGRAMS script/test_stereo_publisher DESTINATION lib/${PROJECT_NAME})
-install(DIRECTORY test_data DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY test_data launch DESTINATION share/${PROJECT_NAME})
 
 ament_package()
