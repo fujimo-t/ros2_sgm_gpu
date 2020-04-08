@@ -10,7 +10,7 @@ SgmGpuNode::SgmGpuNode(const rclcpp::NodeOptions& options)
   : Node("sgm_gpu_node", options)
 {
   rclcpp::Logger parent_logger = this->get_logger();
-  //sgm_gpu_.reset(new SgmGpu(parent_logger));
+  sgm_gpu_.reset(new SgmGpu(parent_logger));
   
   disparity_pub_ 
     = this->create_publisher<stereo_msgs::msg::DisparityImage>("~/disparity", 1);
@@ -41,7 +41,8 @@ void SgmGpuNode::stereo_callback
     return;
 
   stereo_msgs::msg::DisparityImage disparity_msg;
-  //sgm_gpu_->computeDisparity(*left_image, *right_image, *left_info, *right_info, disparity_msg);
+  sgm_gpu_->computeDisparity(
+    *left_image, *right_image, *left_info, *right_info, disparity_msg);
 
   disparity_pub_->publish(disparity_msg);
 }
