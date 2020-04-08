@@ -31,8 +31,8 @@ class TestStereoPublisher(rclpy.node.Node):
         cv_bridge = CvBridge()
         left_image = cv2.imread(left_image_path)
         right_image = cv2.imread(right_image_path)
-        self.left_image_msg_ = cv_bridge.cv2_to_imgmsg(left_image)
-        self.right_image_msg_ = cv_bridge.cv2_to_imgmsg(right_image)
+        self.left_image_msg_ = cv_bridge.cv2_to_imgmsg(left_image, encoding='bgr8')
+        self.right_image_msg_ = cv_bridge.cv2_to_imgmsg(right_image, encoding='bgr8')
 
         # Camera info is only used for set f and t value
         # to stereo_msgs/DisparityImage in sgm_gpu/SgmGpu component
