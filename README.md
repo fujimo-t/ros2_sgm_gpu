@@ -1,6 +1,8 @@
 # Semi-Global Matching on GPU for ROS2
 
-Work in progress
+`sgm_gpu` is a ROS2 package based on [Semi-Global Matching on the GPU by D. Hernandez-Juarez](https://github.com/dhernandez0/sgm) .
+
+It contains library, component and node to estimate disparity image from stereo images using NVIDIA GPU.
 
 ## Build
 
@@ -57,4 +59,8 @@ Remap them to topics from stereo camera.
 * `image_transport` (string, default: "raw")
 
   See [image_transport's documentation](https://wiki.ros.org/image_transport).
+
+## Component: sgm_gpu::SgmGpuNode
+
+Component version of the node.
 
