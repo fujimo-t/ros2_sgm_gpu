@@ -27,6 +27,7 @@ Prerequisite: ROS2 Eloquent in Ubuntu 18.04
   ```
 
 5. Build
+
   ```
   colcon build
   ```
