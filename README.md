@@ -29,13 +29,23 @@ Prerequisite: ROS2 Eloquent in Ubuntu 18.04
   colcon build
   ```
 
-## SgmGpuComponent
+## Test
+
+```bash
+ros2 launch sgm_gpu sgm_gpu_test.py
+```
+
+## Node: sgm_gpu_node
+
+Estimate and publish disparity image from stereo image.
 
 ### Published topic
 
-* `disparity_image` (stereo_msgs/DisparityImage)
+* `~/disparity` (stereo_msgs/DisparityImage)
 
 ### Subscribed topics
+
+Remap them to topics from stereo camera.
 
 * `left_image` (sensor_msgs/Image)
 * `right_image` (sensor_msgs/Image)
@@ -48,20 +58,3 @@ Prerequisite: ROS2 Eloquent in Ubuntu 18.04
 
   See [image_transport's documentation](https://wiki.ros.org/image_transport).
 
-* `p1` (uint8, default: 6)
-
-  Used at cost aggregation step. 
-  Penalty value if difference of disparity between neighborhood pixel is small. 
-  
-  See paper for detail: `H. Hirschmuller, "Stereo Processing by Semiglobal Matching and Mutual Information," in IEEE Transactions on Pattern Analysis and Machine Intelligence, vol. 30, no. 2, pp. 328-341, Feb. 2008.`.
-
-* `p2` (uint8, default: 96)
-
-  Used at cost aggregation step. 
-  Penalty value if difference of disparity between neighborhood pixel is large. 
-  
-  See the paper for detail.
-
-* `check_consistency` (bool, default: true)
-
-  Enable/disable left-right consistency check.
