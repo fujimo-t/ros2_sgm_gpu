@@ -4,12 +4,30 @@ Work in progress
 
 ## Build
 
-```bash
-mkdir -p colcon_ws/src
-cd colcon_ws
-git clone https://github.com/fujimo-t/ros2_sgm_gpu.git src/sgm_gpu
-colcon build
-```
+Prerequisite: ROS2 Eloquent in Ubuntu 18.04
+
+1. [Create a workspace for colcon](https://index.ros.org/doc/ros2/Tutorials/Workspace/Creating-A-Workspace/) if you don't have
+2. [Install rosdep](http://wiki.ros.org/rosdep#Installing_rosdep)
+3. Put sources in the workspace
+
+  ```bash
+  cd <the workspace>
+  git clone https://github.com/fujimo-t/ros2_sgm_gpu.git src/sgm_gpu
+  ```
+
+4. Install dependencies by rosdep
+
+  ```bash
+  # If you have not installed CUDA
+  sudo rosdep install -i --from-path src -y
+  # If you have installed CUDA
+  sudo rosdep install -i --from-path src -y --skip-keys="nvidia-cuda-dev nvidia-cuda"
+  ```
+
+5. Build
+  ```
+  colcon build
+  ```
 
 ## SgmGpuComponent
 
