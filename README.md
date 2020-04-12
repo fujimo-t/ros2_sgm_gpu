@@ -12,28 +12,28 @@ Prerequisite: ROS2 Eloquent in Ubuntu 18.04
 2. [Install rosdep](http://wiki.ros.org/rosdep#Installing_rosdep)
 3. Put sources in the workspace
 
-  ```bash
-  cd <the workspace>
-  git clone https://github.com/fujimo-t/ros2_sgm_gpu.git src/sgm_gpu
-  # image_view package is needed to visualize disparity
-  # Clone it because apt package for Eloquent is still unavailable
-  git clone -b ros2 https://github.com/ros-perception/image_pipeline.git src/image_pipeline
-  ```
+   ```bash
+   cd <the workspace>
+   git clone https://github.com/fujimo-t/ros2_sgm_gpu.git src/sgm_gpu
+   # image_view package is needed to visualize disparity
+   # Clone it because apt package for Eloquent is still unavailable
+   git clone -b ros2 https://github.com/ros-perception/image_pipeline.git src/image_pipeline
+   ```
 
 4. Install dependencies by rosdep
 
-  ```bash
-  # If you have not installed CUDA
-  sudo rosdep install -i --from-path src -y
-  # If you have installed CUDA
-  sudo rosdep install -i --from-path src -y --skip-keys="nvidia-cuda-dev nvidia-cuda"
-  ```
+   ```bash
+   # If you have not installed CUDA
+   sudo rosdep install -i --from-path src -y
+   # If you have installed CUDA
+   sudo rosdep install -i --from-path src -y --skip-keys="nvidia-cuda-dev nvidia-cuda"
+   ```
 
 5. Build
 
-  ```
-  colcon build
-  ```
+   ```
+   colcon build
+   ```
 
 ## Test
 
