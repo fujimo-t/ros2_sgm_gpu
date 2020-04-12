@@ -4,6 +4,8 @@
 
 It contains library, component and node to estimate disparity image from stereo images using NVIDIA GPU.
 
+![result of ros2 launch sgm_gpu_test.py](launch_sgm_gpu_test.jpg)
+
 ## Build
 
 Prerequisite: ROS2 Eloquent in Ubuntu 18.04
@@ -40,6 +42,8 @@ Prerequisite: ROS2 Eloquent in Ubuntu 18.04
 ```bash
 ros2 launch sgm_gpu sgm_gpu_test.py
 ```
+
+Then viewers for input stereo images and output disparity are opened like above screenshot.
 
 ## Node: sgm_gpu_node
 
