@@ -15,6 +15,9 @@ Prerequisite: ROS2 Eloquent in Ubuntu 18.04
   ```bash
   cd <the workspace>
   git clone https://github.com/fujimo-t/ros2_sgm_gpu.git src/sgm_gpu
+  # image_view package is needed to visualize disparity
+  # Clone it because apt package for Eloquent is still unavailable
+  git clone -b ros2 https://github.com/ros-perception/image_pipeline.git src/image_pipeline
   ```
 
 4. Install dependencies by rosdep

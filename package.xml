@@ -21,6 +21,7 @@
   <depend>stereo_msgs</depend>
   <build_depend>nvidia-cuda-dev</build_depend>
   <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>image_view</exec_depend>
   <exec_depend>nvidia-cuda</exec_depend>
   <exec_depend>python-opencv</exec_depend>
   <exec_depend>rclpy</exec_depend>
